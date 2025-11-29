@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { analyzeVoice } = require('../controllers/voiceController');
+const multer = require("multer");
+const { handleVoiceUpload } = require('../controllers/voiceController');
 
-router.post('/analyze', analyzeVoice);
+// store audio in /uploads
+const upload = multer({ storage: multer.memoryStorage() }); // store in memory
+
+router.post('/analyze', upload.single("voice"), handleVoiceUpload);
 
 module.exports = router;
 
