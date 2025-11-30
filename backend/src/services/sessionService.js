@@ -1,21 +1,17 @@
-const Session = require("../models/Session.js");
+const Session = require("../models/Session");
 
-// Save a new session
-async function saveSession({ type, input, analysis, notes = "" }) {
-  const session = new Session({
-    type,
-    input,
-    analysis,
-    notes,
-  });
+const saveSession = async (sessionData) => {
+  const session = new Session(sessionData);
+  return await session.save();
+};
 
-  await session.save();
-  return session;
+async function getAllSessions() {
+  return await Session.find().sort({ createdAt: -1 });
 }
 
-// Fetch recent sessions
-async function getRecentSessions(limit = 10) {
-  return Session.find().sort({ createdAt: -1 }).limit(limit);
+async function getStressTrend() {
+  return await Session.find({}, { createdAt: 1, stressScore: 1 })
+    .sort({ createdAt: 1 });
 }
 
-module.exports = { saveSession, getRecentSessions };
+module.exports = { saveSession, getAllSessions, getStressTrend };

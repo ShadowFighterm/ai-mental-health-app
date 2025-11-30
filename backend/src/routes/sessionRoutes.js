@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const {
-  saveSession,
   getSessions,
+  getStressTrend,
 } = require("../controllers/sessionController");
 
-router.post("/save", saveSession);
-router.get("/list", getSessions);
+router.get("/", getSessions);
+router.get("/trend", getStressTrend);
 
 module.exports = router; 

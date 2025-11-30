@@ -7,28 +7,22 @@ const sessionSchema = new mongoose.Schema({
     required: true
   },
 
-  // Raw input
-  input: {
-    type: mongoose.Schema.Types.Mixed,  // { text: "..."} or { image: "..."} etc.
+  // AI output fields
+  primaryEmotion: {
+    type: String,
     required: true
   },
 
-  // AI output fields
-  analysis: {
-    confidence: Number,
-    primaryEmotion: String,
-    textEmotion: String,
-    faceEmotion: String,
-    stressLevel: String,       // "low" | "medium" | "high"
-    stressScore: Number,       // e.g. 1 → 10
-    quote: String,
-    tips: [String],            // array of tips
+  stressScore: {
+    type: Number,
+    min: 0,
+    max: 10,
+    required: true
   },
 
-  // Optional user notes (if you add journaling)
-  notes: {
+  title:{
     type: String,
-    default: ""
+    required: true
   },
 
   // for displaying "Today, 10:15 AM"

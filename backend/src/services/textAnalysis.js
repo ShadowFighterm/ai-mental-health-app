@@ -1,7 +1,7 @@
 const genAI = require("../config/gemini.js");
 const { saveSession } = require("./sessionService.js");
 
-const analyzeText = async (userMessage, type) => {
+const analyzeText = async (userMessage, type = "text") => {
   try {
     const model = genAI.getGenerativeModel({
       model: "models/gemini-2.5-flash",
@@ -24,10 +24,11 @@ Return the response using exactly this JSON format:
   "faceEmotion": "<if user message includes "face emotion: <emotion>", use that emotion; otherwise "unknown">",
   "tips": ["tip1", "tip2", "tip3"],
   "quote": "short motivational quote"
+  "title": "A concise title summarizing the user's emotional state"
 }
 
 Rules:
-- Keep JSON valid at all times. This is a must rule and you should return plain json only not formatted.
+- Keep JSON valid at all times. This is a must rule and you should return plain json only not formatted. Avoid formatting the json code block or any other text.
 - Tips must be short, helpful, actionable, and relevant to the user's message.
 - Quote must be encouraging but simple.
 - Do NOT return any text outside the JSON. 
@@ -36,6 +37,17 @@ Rules:
 
     const result = await model.generateContent(userMessage);
     const response = result.response;
+    // Parse JSON
+    const json = JSON.parse(response.text());
+
+    // Save only what your schema supports
+    await saveSession({
+      type: type,
+      primaryEmotion: json.primaryEmotion,
+      stressScore: json.stressScore,
+      title: json.title,
+      // createdAt auto-saves
+    }); 
     return response.text();
 
   } catch (error) {
