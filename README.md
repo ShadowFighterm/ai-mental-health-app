@@ -46,10 +46,10 @@ We adopted a **Layered Architecture** pattern with the following layers:
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/mental-health-fitness-coach.git
+git clone https://github.com/ShadowFighterm/ai-mental-health-app.git
 
 # Navigate into the project
-cd mental-health-fitness-coach
+cd ai-mental-health-app
 
 ```
 
