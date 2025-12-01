@@ -1,4 +1,4 @@
-const Session = require("../models/Session");
+const Session = require("../models/session");
 
 const saveSession = async (sessionData) => {
   const session = new Session(sessionData);
