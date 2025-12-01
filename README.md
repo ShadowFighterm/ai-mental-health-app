@@ -20,17 +20,18 @@ We adopted a **Layered Architecture** pattern with the following layers:
   - Manages request handling, validation, and orchestration of AI model calls.  
   - Ensures separation of concerns between frontend and data/model access.
 
+  Run `npm start` to start the business logic layer
+
 - **Data/Integration Layer (AI Model)**  
-  - Uses **Hugging Face models** via API calls.  
+  - Uses **Gemini, Assembly Ai and Luxand Cloud** via API calls.  
   - Provides NLP capabilities for mental health and fitness coaching responses.  
-  - Abstracted behind backend services to keep the frontend decoupled.
 
 ---
 
 ## ⚙️ Tech Stack
 - **Frontend:** React + TypeScript (TSX)  
-- **Backend:** Node.js + TypeScript  
-- **AI Model:** Hugging Face API (transformer-based NLP models)  
+- **Backend:** Node.js  
+- **AI Model:** Gemini, Assembly AI & Luxand Cloud 
 - **Architecture:** Layered (Presentation → Business Logic → Data/Integration)
 
 ---
@@ -39,8 +40,8 @@ We adopted a **Layered Architecture** pattern with the following layers:
 
 ### Prerequisites
 - Node.js (>= 18.x recommended)  
-- npm or yarn  
-- Hugging Face API key  
+- npm
+- Gemini, AssemblyAI and Luxand Cloud api keys
 
 ### Installation
 ```bash
@@ -50,5 +51,31 @@ git clone https://github.com/your-username/mental-health-fitness-coach.git
 # Navigate into the project
 cd mental-health-fitness-coach
 
-# Install dependencies
+```
+
+- **Frontend**
+```bash
+# Folder root
+cd frontend
+
+# Install dependencies 
 npm install
+
+# Run
+npm run dev
+
+```
+
+- **Backend**
+```bash
+# Folder root
+cd backend
+
+# Install dependencies 
+npm install
+
+# Run
+npm start
+```
+
+
