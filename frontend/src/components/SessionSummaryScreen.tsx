@@ -43,7 +43,7 @@ export function SessionSummaryScreen({ onStartNewSession }: SessionSummaryScreen
     const fetchSessions = async () => {
       try {
         setLoading(true);
-        const res = await axios.get<ApiResponse>("http://localhost:5000/api/sessions");
+        const res = await axios.get<ApiResponse>("https://ai-mental-health-app.onrender.com/api/sessions");
         
         // Access the nested data property from the API response
         const sessionsData = res.data.data || [];

@@ -119,7 +119,7 @@ export function MainInteractionScreen() {
     setShowResults(false);
 
     try {
-      const response = await fetch("http://localhost:5000/api/text/analyze", {
+      const response = await fetch("https://ai-mental-health-app.onrender.com/api/text/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: textInput }),
@@ -155,7 +155,7 @@ export function MainInteractionScreen() {
       setVoiceError(null);
       setIsVoiceProcessing(true);
 
-      const response = await fetch("http://localhost:5000/api/voice/analyze", {
+      const response = await fetch("https://ai-mental-health-app.onrender.com/api/voice/analyze", {
         method: "POST",
         body: formData,
       });
@@ -305,7 +305,7 @@ export function MainInteractionScreen() {
       setAnalysisSource("full");
       setShowResults(false);
 
-      const response = await fetch("http://localhost:5000/api/face/analyze", {
+      const response = await fetch("https://ai-mental-health-app.onrender.com/api/face/analyze", {
         method: "POST",
         body: formData,
       });
